@@ -1,0 +1,14 @@
+{
+  "name": "p3-vulnerable-range",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TRAINING ONLY - deliberately vulnerable P3 security range",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

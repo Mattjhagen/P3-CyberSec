@@ -1,0 +1,9 @@
+services:
+  p3-range:
+    build: .
+    environment:
+      P3_CYBER_RANGE: "1"
+      PORT: "31337"
+    ports:
+      - "127.0.0.1:31337:31337"
+    restart: "no"

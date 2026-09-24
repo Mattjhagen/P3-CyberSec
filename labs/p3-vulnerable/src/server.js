@@ -1,4 +1,5 @@
 import express from 'express';
+import { registerIdorChallenge } from './challenges/idor.js';
 
 if (process.env.P3_CYBER_RANGE !== '1') {
   console.error('Set P3_CYBER_RANGE=1 to run the local training range.');
@@ -28,12 +29,6 @@ app.get('/api/health', (_req, res) => {
   res.json({ ok: true, service: 'p3-cyber-range' });
 });
 
-/*
-  Challenge modules are intentionally kept separate under src/challenges/.
-  Each module contains one insecure training behavior, its flag, and a
-  matching hardening exercise. This keeps the range easy to reset and audit.
-*/
-
 app.get('/api/lab/users', (_req, res) => {
   res.json(labUsers);
 });
@@ -41,6 +36,8 @@ app.get('/api/lab/users', (_req, res) => {
 app.get('/api/lab/loans', (_req, res) => {
   res.json(labLoans);
 });
+
+registerIdorChallenge(app, labLoans);
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`P3 Cyber Range listening on http://127.0.0.1:${PORT}`);
